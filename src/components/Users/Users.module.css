@@ -1,0 +1,19 @@
+
+
+.profPic{
+    height: 50px;
+    width: 50px;
+    object-fit: fill;
+    object-position: 50%;
+    border-radius: 50%;
+    margin: 0 10px 0 -10px;
+    
+}
+.selectedPage{
+    font-weight: bold;
+}
+.users{
+    padding-left: 15px;
+    height: 87.5vh;
+    overflow-y: scroll;
+}

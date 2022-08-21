@@ -1,0 +1,22 @@
+.menu{
+  grid-area: n;
+  background: rgb(7,0,98);
+background: linear-gradient(0deg, rgba(7,0,98,1) 0%, rgba(41,78,151,1) 20%, rgba(107,230,255,1) 100%);
+  text-align: center;
+}
+.item{
+  
+  margin: 15px;
+}
+.item a{
+  text-decoration: none;
+  color: #000;
+  font: 18px 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.item a.active{
+  color: aliceblue;
+}
+
+/* .left-menu div{
+  
+} */
