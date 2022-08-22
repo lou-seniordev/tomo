@@ -2,15 +2,16 @@ import Profile from './Profile';
 import React from 'react';
 import {connect} from 'react-redux';
 import { setProfile, setStatus, updateStatus } from '../../redux/profileReducer';
-import { useParams } from 'react-router-dom';
+import { Navigate, NavigationType, useParams } from 'react-router-dom';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import {compose} from "redux";
+import { useNavigate } from "react-router-dom";
 
 export function withRouter(Children){
   return(props)=>{
 
      const match  = {params: useParams()};
-     return <Children {...props}  match = {match}/>
+     return <Children history={props.history} {...props}  match = {match}/>
  }
 }
 
@@ -21,6 +22,10 @@ class ProfileContainer extends React.Component{
     if(!userId)
     {
       userId = this.props.authorizedUserId;
+      if(!this.props.userId){
+        userId = 2;
+      }
+       
     }
     this.props.setProfile(userId);
     this.props.setStatus(userId);
@@ -28,7 +33,7 @@ class ProfileContainer extends React.Component{
     
   }
     render(){
-        
+      
         return <div>
           <Profile {...this.props} profile={this.props.profile}
           updateStatus={this.props.updateStatus} status={this.props.status}></Profile>
