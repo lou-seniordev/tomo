@@ -23,7 +23,7 @@ class ProfileContainer extends React.Component{
     {
       userId = this.props.authorizedUserId;
       if(!this.props.userId){
-        userId = 2;
+        // Redirect to login
       }
        
     }
