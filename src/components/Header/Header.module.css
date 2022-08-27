@@ -1,6 +1,20 @@
 .header{
  grid-area: h;
- background: rgb(107, 230, 255);
+ animation: headerGradient 20s ease infinite;
+ background: linear-gradient(45deg, rgba(62,66,255,1),rgba(46,255,221,1),rgba(137,26,210,1) );
+ /* background: linear-gradient(45deg, rgba(137,26,210,1), rgba(62,66,255,1), rgba(46,255,221,1)); */
+  background-size: 300% 300%;
+}
+@keyframes headerGradient {
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 0%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
 }
 .header img{
   height: 100%;

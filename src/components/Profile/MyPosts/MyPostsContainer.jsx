@@ -2,6 +2,7 @@ import React from 'react';
 import { addPostActionCreator } from '../../../redux/profileReducer';
 import MyPosts from './MyPosts';
 import {connect} from "react-redux";
+import { reset } from 'redux-form';
 
 let mapStateToProps = (state)=>{
   return{
@@ -10,7 +11,10 @@ let mapStateToProps = (state)=>{
 }
 let mapDispatchToProps = (dispatch)=>{
   return{
-      addPost: (postText)=>{dispatch(addPostActionCreator(postText));}
+      addPost: (postText)=>{
+        dispatch(addPostActionCreator(postText));
+        dispatch(reset('post'));
+      }
   }
 }
 const MyPostsContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts);

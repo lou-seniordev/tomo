@@ -1,8 +1,21 @@
+
 .menu{
+  animation: gradient 20s ease infinite;
   grid-area: n;
-  background: rgb(7,0,98);
-background: linear-gradient(0deg, rgba(7,0,98,1) 0%, rgba(41,78,151,1) 20%, rgba(107,230,255,1) 100%);
+  background: linear-gradient(45deg, rgba(137,26,210,1), rgba(62,66,255,1), rgba(46,255,221,1));
+  background-size: 200% 200%;
   text-align: center;
+}
+@keyframes gradient {
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 0%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
 }
 .item{
   
