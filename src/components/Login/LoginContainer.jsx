@@ -8,7 +8,6 @@ class LoginContainer extends React.Component{
         return <Login {...this.props} login={this.props.login}/>
     }
 }
-
 let mapStateToProps = (state)=>({
     isAuth: state.auth.isAuth
    });
