@@ -15,12 +15,8 @@ class HeaderContainer extends React.Component
             isAuth: false,
             login: ""
         });
+        // redirect to /users
     }
-    // componentDidUpdate(prevProps, prevState){
-    //     if(prevProps.isAuth !== this.props.isAuth){
-            
-    //     }
-    // }
     render(){
         return <Header {...this.props} logout={this.onLogoutClick}/>;
     }

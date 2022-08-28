@@ -30,8 +30,7 @@ class ProfileStatus extends React.Component{
             });
         }
     }
-    render(){
-        
+    render(){     
         return(
             <div>
              {!this.state.editMode && 
@@ -45,9 +44,7 @@ class ProfileStatus extends React.Component{
              </div>
              }
          </div>
-        );
-
-        
+        );     
     }
 }
 

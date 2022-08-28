@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { maxLength, requiredField } from "../../../utils/Validators";
+import { maxLength } from "../../../utils/Validators";
 import { Textarea } from "../../common/FormControls/FormControls";
 import style from './MyPosts.module.css';
 const maxLengthValidator = maxLength(300);

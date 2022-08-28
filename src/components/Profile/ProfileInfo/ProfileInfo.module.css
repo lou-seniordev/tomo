@@ -1,34 +1,22 @@
 
-
 .profileBackground{
-  /* position: relative; */
   height: 200px;
   width: 970px;
   object-fit: cover;
   z-index: 0;
 }
 .avatar{
-  
-  /* position: absolute; */
-  /* border: 2px solid white; */
   width: 140px;
   top: 30%;
   left: 26%;
   border-radius: 20%;
   margin: -50px 0 5px 15px;
   z-index: 2;
-  /* object-fit: cover;
-  object-position: 50%;
-  border: 5px solid white; */
 }
-
 .profileHead{
-  display: block;
-  /* margin-bottom: 25%; */
-  
+  display: block;  
 }
 .mainInfo, .jobInfo{
-  /* position: absolute; */
   margin: 0 0 15px 10px;
 }
 .mainInfo{

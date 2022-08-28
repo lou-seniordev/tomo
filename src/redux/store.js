@@ -2,7 +2,7 @@ import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 
-
+adasdsad
 let store = {
     _state: {
         profilePage:{

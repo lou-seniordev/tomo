@@ -4,28 +4,24 @@ import noPic from "./../../assets/images/default.jpg"
 import { NavLink } from "react-router-dom";
 
 
-let User = ({user,totalUsersCount, pageSize, currentPage, onPageChanged, ...props})=>{    
-
+let User = ({user, followingInProgress, unfollow, follow})=>{    
 return(<div>
-{props.users.map(u=><div key={u.id}>
 <span>
-    <NavLink to={'/profile/'+u.id}><div><img alt={u.name} src={u.photos.small != null ? u.photos.small: noPic} className={style.profPic}/></div></NavLink>
-    <div>{u.followed ? <button  disabled={props.followingInProgress.some(id=>id===u.id)} onClick={()=>{ props.unfollow(u.id)}}>Unfollow</button> :
-     <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={()=>{props.follow(u.id)}}>Follow</button>}</div>
+    <NavLink to={'/profile/'+user.id}><div><img alt={user.name} src={user.photos.small != null ? user.photos.small: noPic} className={style.profPic}/></div></NavLink>
+    <div>{user.followed ? <button  disabled={followingInProgress.some(id=>id===user.id)} onClick={()=>{ unfollow(user.id)}}>Unfollow</button> :
+     <button disabled={followingInProgress.some(id=>id===user.id)} onClick={()=>{follow(user.id)}}>Follow</button>}</div>
 </span>
 <span>
     <span>
-        <div>{u.name}</div>
-        <div>{u.status}</div>
+        <div>{user.name}</div>
+        <div>{user.status}</div>
     </span>
     <span>
-        <div>{"u.location.city"}</div>
-        <div>{"u.location.country"}</div>
+        <div>{"user.location.city"}</div>
+        <div>{"user.location.country"}</div>
     </span>
 </span>
 </div>)
 
-}
-</div>);
 }
 export default User;

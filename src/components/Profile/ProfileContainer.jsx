@@ -2,10 +2,9 @@ import Profile from './Profile';
 import React from 'react';
 import {connect} from 'react-redux';
 import { setProfile, setStatus, updateStatus } from '../../redux/profileReducer';
-import { Navigate, NavigationType, useParams } from 'react-router-dom';
-import { withAuthRedirect } from '../hoc/withAuthRedirect';
+import { useParams } from 'react-router-dom';
 import {compose} from "redux";
-import { useNavigate } from "react-router-dom";
+
 
 export function withRouter(Children){
   return(props)=>{
@@ -28,9 +27,7 @@ class ProfileContainer extends React.Component{
        
     }
     this.props.setProfile(userId);
-    this.props.setStatus(userId);
-    // usersAPI.setProfile(userId).then(data => this.props.setUserProfile(data));
-    
+    this.props.setStatus(userId);  
   }
     render(){
       
@@ -53,5 +50,3 @@ export default compose(
   withRouter  
   // withAuthRedirect
 )(ProfileContainer);
-
-//connect(mapStateToProps, { setProfile })(withRouter(AuthRedirectComponent));

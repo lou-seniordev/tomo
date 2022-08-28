@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { follow, setCurrentPage, setUsers, toggleFollowingProgress, unfollow, requestUsers } from '../../redux/usersReducer';
+import { follow, setUsers, toggleFollowingProgress, unfollow, requestUsers } from '../../redux/usersReducer';
 import Users from './Users';
 import Preloader from '../common/preloader/preloader';
 import {getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/usersSelectors';
@@ -8,23 +8,12 @@ import {getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching
 
 class UsersAPI extends React.Component{
     componentDidMount(){
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
-        // this.props.setIsFetching(true);
-        
-        // usersAPI.requestUsers(this.props.currentPage, this.props.pageSize).then(result => {
-        //         this.props.setUsers(result.items);
-        //         this.props.setIsFetching(false);
-        //         this.props.setTotalUsersCount(result.totalCount);
-        //     });
+        const {currentPage, pageSize} = this.props;
+        this.props.requestUsers(currentPage, pageSize);
     }
     onPageChanged = (p) =>{
-         this.props.requestUsers(p, this.props.pageSize);
-         this.props.setCurrentPage(p);
-        // this.props.setIsFetching(true);
-        // usersAPI.requestUsers(p, this.props.pageSize).then(result => {
-        //         this.props.setUsers(result.items);
-        //         this.props.setIsFetching(false);
-        //     });
+        const {pageSize} = this.props;
+         this.props.requestUsers(p, pageSize);
     }
     render(){
         
@@ -43,17 +32,6 @@ class UsersAPI extends React.Component{
     }
 }
 
-
-// let mapStateToProps =(state)=>{
-//     return{
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
 let mapStateToProps =(state)=>{
     return{
         users: getUsers(state),
@@ -67,4 +45,4 @@ let mapStateToProps =(state)=>{
 
 
 export default  connect(mapStateToProps, 
-    { follow, unfollow, setUsers, setCurrentPage, toggleFollowingProgress, requestUsers })(UsersAPI);
+    { follow, unfollow, setUsers, toggleFollowingProgress, requestUsers })(UsersAPI);

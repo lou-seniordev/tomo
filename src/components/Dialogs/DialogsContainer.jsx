@@ -19,9 +19,6 @@ let mapDispatchToProps = (dispatch)=>{
         }
     });
 }
-
-//const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(withAuthRedirect(Dialogs));
-
 export default compose(
     connect(mapStateToProps,mapDispatchToProps),
     withAuthRedirect
