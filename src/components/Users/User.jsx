@@ -2,15 +2,12 @@ import React from "react";
 import style from "./Users.module.css"
 import noPic from "./../../assets/images/default.jpg"
 import { NavLink } from "react-router-dom";
-import Pagination from "../common/Paginator/pagination";
 
 
-let Users = ({totalUsersCount, pageSize, currentPage, onPageChanged, ...props})=>{    
-return(<div className={style.users}>     
-    <Pagination currentPage={currentPage} totalUsersCount={totalUsersCount}
-                pageSize={pageSize} onPageChanged = {onPageChanged}/>
-{
-props.users.map(u=><div key={u.id}>
+let User = ({user,totalUsersCount, pageSize, currentPage, onPageChanged, ...props})=>{    
+
+return(<div>
+{props.users.map(u=><div key={u.id}>
 <span>
     <NavLink to={'/profile/'+u.id}><div><img alt={u.name} src={u.photos.small != null ? u.photos.small: noPic} className={style.profPic}/></div></NavLink>
     <div>{u.followed ? <button  disabled={props.followingInProgress.some(id=>id===u.id)} onClick={()=>{ props.unfollow(u.id)}}>Unfollow</button> :
@@ -31,4 +28,4 @@ props.users.map(u=><div key={u.id}>
 }
 </div>);
 }
-export default Users;
+export default User;
