@@ -10,7 +10,6 @@ let initialState = {
         {id: 1, post: "Wassup!", likesCount:2}, 
         {id: 2, post:"React in progress", likesCount:17} 
     ],
-    newPostText: "",
     profile: null,
     status: ""
 }
