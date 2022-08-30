@@ -1,3 +1,23 @@
+
+.pagination{
+    text-align: center;
+}
+
+.prevPageBtn, .nextPageBtn, .pageNumber{
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: rgb(193, 223, 255);
+    border-radius: 10px;
+    margin: 2px;
+    padding: 2px;
+    text-align: center;
+}
+
 .selectedPage{
     font-weight: bold;
+    background: rgb(168, 203, 255);
+}
+.prevPageBtn:hover, .nextPageBtn:hover, .pageNumber:hover{
+    background: rgb(168, 203, 255);
 }
