@@ -32,18 +32,21 @@ class App extends React.Component {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className = 'app-wrapper-content'>
-                <React.Suspense fallback={<Preloader />}>
+                
                   <Routes>
-                    <Route path='/profile/:userId/' element={<ProfileContainer />}/>
-                    <Route path='/profile' element={<ProfileContainer />}/>
-                    <Route path='/dialogs' element={<DialogsContainer />}/>                            
+                    
+                    <Route path='/profile' element={<ProfileContainer />}/>                                          
                     <Route path='/news' element={<News/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/users' element={<UsersContainer/>}/>
                     <Route path='/settings' element={<Settings/>}/>
-                    <Route path='/login' element={<LoginContainer/>}/>
+                    <React.Suspense fallback={<Preloader />}>
+                      <Route path='/dialogs' element={<DialogsContainer />}/>     
+                      <Route path='/profile/:userId/' element={<ProfileContainer />}/> 
+                      <Route path='/login' element={<LoginContainer/>}/>
+                    </React.Suspense> 
                   </Routes>
-                  </React.Suspense> 
+                  
                 </div>
               </div>
             
