@@ -6,7 +6,7 @@ const SAVE_USER_PHOTO = "auth/SAVE_USER_PHOTO";
 
 let initialState = {
    email: null,
-   login: null
+   login: null,
 };
 
 const settingsReducer = (state = initialState, action) =>{
