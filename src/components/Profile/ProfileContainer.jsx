@@ -2,10 +2,10 @@ import Profile from './Profile';
 import React from 'react';
 import {connect} from 'react-redux';
 import { setProfile, setStatus, updateStatus } from '../../redux/profileReducer';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import {compose} from "redux";
 
-
+let anonym = false;
 export function withRouter(Children){
   return(props)=>{
 
@@ -15,28 +15,31 @@ export function withRouter(Children){
 }
 
 class ProfileContainer extends React.Component{
+
   componentDidMount(){
     
     let userId = this.props.match.params.userId;
     if(!userId)
     {
       userId = this.props.authorizedUserId;
-      if(!this.props.userId){
+      if(!userId){
+        anonym = true
+        //this.props.history.push("/login");
         // Redirect to login
-      }
-       
+      }      
     }
     this.props.setProfile(userId);
     this.props.setStatus(userId);  
   }
     render(){
-      
-        return <div>
+        if(anonym) return <Navigate to={"/login"}/>;
+        return<div>        
           <Profile {...this.props} profile={this.props.profile}
           updateStatus={this.props.updateStatus} status={this.props.status}></Profile>
-        </div>
+        </div>}
     };
-}
+
+
 
 let mapStateToProps = (state)=>({
  profile: state.profilePage.profile,
