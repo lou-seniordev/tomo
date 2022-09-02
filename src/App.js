@@ -14,7 +14,7 @@ import { initializeApp } from './redux/appReducer';
 import Preloader from './components/common/preloader/preloader';
 import store from './redux/reduxStore';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 const DialogsContainer = React.lazy(()=>import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(()=>import('./components/Profile/ProfileContainer'));
 const LoginContainer = React.lazy(()=>import('./components/Login/LoginContainer'));
@@ -63,10 +63,10 @@ const AppContainer =  compose(
   connect(mapStateToProps, {initializeApp}))(App);
 
 const MainApp = (props)=>{
-  return <BrowserRouter basename={process.env.PUBLIC_URL}>
+  return <HashRouter>
   <Provider store={store}>
     <AppContainer />  
   </Provider>
-</BrowserRouter >
+</HashRouter >
 }
 export default MainApp;
