@@ -31,18 +31,12 @@ class App extends React.Component {
               <div className = 'app-wrapper'>
                 <HeaderContainer/>
                 <Navbar/>
-                <div className = 'app-wrapper-content'>
-                
+                <div className = 'app-wrapper-content'>               
                   <Routes>                                                                              
                     <Route path='/news' element={<News/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/users' element={<UsersContainer/>}/>
                     <Route path='/settings' element={<Settings/>}/>
-
-                    
-                      
-                    
-
                   </Routes>
                   <React.Suspense fallback={<Preloader />}>
                   <Routes>  
@@ -69,7 +63,7 @@ const AppContainer =  compose(
   connect(mapStateToProps, {initializeApp}))(App);
 
 const MainApp = (props)=>{
-  return <BrowserRouter>
+  return <BrowserRouter basename={process.env.PUBLIC_URL}>
   <Provider store={store}>
     <AppContainer />  
   </Provider>
