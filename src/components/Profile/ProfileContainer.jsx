@@ -15,21 +15,26 @@ export function withRouter(Children){
 }
 
 class ProfileContainer extends React.Component{
-
-  componentDidMount(){
-    
+  refreshProfile(){     
     let userId = this.props.match.params.userId;
     if(!userId)
     {
       userId = this.props.authorizedUserId;
       if(!userId){
-        anonym = true
+        anonym = true;
         //this.props.history.push("/login");
         // Redirect to login
       }      
     }
     this.props.setProfile(userId);
-    this.props.setStatus(userId);  
+    this.props.setStatus(userId); 
+  }
+  componentDidMount(){
+    this.refreshProfile();
+  }
+  componentDidUpdate(prevProps, prevState){
+    if(this.props.match.params.userId !== prevProps.match.params.userId)
+    this.refreshProfile();
   }
     render(){
         if(anonym) return <Navigate to={"/login"}/>;

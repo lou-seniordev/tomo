@@ -6,7 +6,6 @@ import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import { withRouter } from './components/Profile/ProfileContainer';
-import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import {connect} from 'react-redux';
 import {compose} from "redux";
@@ -15,6 +14,7 @@ import Preloader from './components/common/preloader/preloader';
 import store from './redux/reduxStore';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
+import SettingsContainer from './components/Settings/SettingsContainer';
 const DialogsContainer = React.lazy(()=>import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(()=>import('./components/Profile/ProfileContainer'));
 const LoginContainer = React.lazy(()=>import('./components/Login/LoginContainer'));
@@ -36,7 +36,7 @@ class App extends React.Component {
                     <Route path='/news' element={<News/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/users' element={<UsersContainer/>}/>
-                    <Route path='/settings' element={<Settings/>}/>
+                    <Route path='/settings' element={<SettingsContainer/>}/>
                   </Routes>
                   <React.Suspense fallback={<Preloader />}>
                   <Routes>  

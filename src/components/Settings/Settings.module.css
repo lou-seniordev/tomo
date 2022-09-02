@@ -4,3 +4,7 @@
 .content{
     height: 87.5vh;
 }
+.avatar{
+    width: 200px;
+    border-radius: 50%;
+}

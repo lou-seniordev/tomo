@@ -33,6 +33,9 @@ export const profileAPI = {
     },
     updateStatus(status){        
         return instance.put(`profile/status`, {status});
+    },
+    savePhoto(photo){
+        
     }
 }
 export const authAPI = {
