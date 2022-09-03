@@ -1,12 +1,10 @@
 import { stopSubmit } from "redux-form";
 import { authAPI, profileAPI } from "../api/api";
 
-const SAVE_USER_PHOTO = "auth/SAVE_USER_PHOTO";
-
+const SAVE_USER_PHOTO = "SAVE_USER_PHOTO";
 
 let initialState = {
-   email: null,
-   login: null,
+
 };
 
 const settingsReducer = (state = initialState, action) =>{
@@ -26,18 +24,9 @@ export const savePhoto = (photo) => async (dispatch) => {
     let result = await profileAPI.savePhoto(photo);
     if(result.data.resultCode === 0){
         dispatch(setPhoto(photo));
+        
     }
 
 } 
-// export const logout = () => async(dispatch) => {
-// let result = await authAPI.logout();
-//     if(result.data.resultCode === 0){        
-//         dispatch(setUserData({
-//             id:null,
-//             email: null,
-//             login: null,
-//             isAuth: false
-//         }));
-//     }
-// }
+
 export default settingsReducer;
