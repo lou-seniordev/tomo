@@ -6,6 +6,7 @@ const ProfileInfo = (props)=>{
   if(!props.profile){
     return <Preloader></Preloader>
   }
+
     return(
         <div>
           <div className={style.profileHead}>
@@ -21,12 +22,27 @@ const ProfileInfo = (props)=>{
               </div>
               <div className={style.jobInfo}>         
                 <span>{props.profile.lookingForAJob ? <div>Looking for a job<br/>Description: {props.profile.lookingForAJobDescription}</div>: ""}</span>
-              </div>      
+              </div>   
+              <div className={style.contacts}>
+                <p>Contacts</p>
+                
+                  <div className={style.headerContact + " " + style.contact}><b>GitHub</b>: {props.profile.contacts.github}</div>
+                  {Object.keys(props.profile.contacts).map(key => {
+                    if(true)
+                    return <Contacts key={key} contactTitle={key} ContactValue={props.profile.contacts[key]}></Contacts>
+                  }
+                      
+                  )}
+                  
+              </div>   
             </div>
           </div>
           <hr/>
       </div>
     );
+}
+const Contacts = ({contactTitle, ContactValue})=>{
+  return <div className={style.contact}><b>{contactTitle}</b>: {ContactValue}</div>
 }
 export default ProfileInfo;
 // src='https://i.pinimg.com/736x/b8/69/5f/b8695f007aea9a08a0419479217ca6aa.jpg'

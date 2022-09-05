@@ -13,7 +13,7 @@ let Pagination = ({totalItemsCount, pageSize, currentPage, onPageChanged, portio
     let [portionNumber, setPortionNumber] = useState(1);
     let leftPortionBorder = (portionNumber-1) * portionSize + 1;
     let rightPortionBorder = portionNumber * portionSize;
-    console.log(portionNumber);
+    
 
      
 return(
