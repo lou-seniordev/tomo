@@ -1,7 +1,7 @@
 import Profile from './Profile';
 import React from 'react';
 import {connect} from 'react-redux';
-import { setProfile, setStatus, updateStatus } from '../../redux/profileReducer';
+import { setProfile, setStatus, updateStatus, saveProfile } from '../../redux/profileReducer';
 import { Navigate, useParams } from 'react-router-dom';
 import {compose} from "redux";
 
@@ -40,7 +40,9 @@ class ProfileContainer extends React.Component{
         if(anonym) return <Navigate to={"/login"}/>;
         return<div>        
           <Profile {...this.props} profile={this.props.profile}
-          updateStatus={this.props.updateStatus} status={this.props.status} isOwner={!this.props.match.params.userId}></Profile>
+          updateStatus={this.props.updateStatus} status={this.props.status} isOwner={!this.props.match.params.userId}
+          saveProfile={this.props.saveProfile}>
+          </Profile>
         </div>}
     };
 
@@ -54,7 +56,7 @@ let mapStateToProps = (state)=>({
 });
 
 export default compose(
-  connect(mapStateToProps, { setProfile, setStatus, updateStatus }),
+  connect(mapStateToProps, { setProfile, setStatus, updateStatus, saveProfile}),
   withRouter  
   // withAuthRedirect
 )(ProfileContainer);

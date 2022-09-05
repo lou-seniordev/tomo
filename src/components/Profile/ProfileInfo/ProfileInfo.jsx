@@ -11,7 +11,7 @@ const ProfileInfo = (props)=>{
     return <Preloader></Preloader>
   }
   let onSubmit = (formData)=>{
-    console.log(formData);
+    props.saveProfile(formData);
   }
     return(
         <div>
