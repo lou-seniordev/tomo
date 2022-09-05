@@ -40,7 +40,7 @@ class ProfileContainer extends React.Component{
         if(anonym) return <Navigate to={"/login"}/>;
         return<div>        
           <Profile {...this.props} profile={this.props.profile}
-          updateStatus={this.props.updateStatus} status={this.props.status}></Profile>
+          updateStatus={this.props.updateStatus} status={this.props.status} isOwner={!this.props.match.params.userId}></Profile>
         </div>}
     };
 
