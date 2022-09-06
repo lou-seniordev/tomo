@@ -11,7 +11,7 @@ const ProfileInfo = (props)=>{
     return <Preloader></Preloader>
   }
   let onSubmit = (formData)=>{
-    props.saveProfile(formData);
+    props.saveProfile({...formData, fullName: props.profile.fullName});
   }
     return(
         <div>
@@ -26,7 +26,7 @@ const ProfileInfo = (props)=>{
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} isOwner={props.isOwner}/>               
               </div>
               {editMode ?
-              <ProfileDetailsForm profile={props.profile} onSubmit={onSubmit}/> :
+              <ProfileDetailsForm initialValues={props.profile} contacts={props.profile.contacts} onSubmit={onSubmit}/> :
               <ProfileDetails goToEditMode={()=>{setEditMode(true)}}profile={props.profile} isOwner={props.isOwner}/>
               }
             </div>

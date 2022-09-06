@@ -82,10 +82,11 @@ export const updateStatus = (status) => async (dispatch) => {
         if(result.data.resultCode === 0) 
         dispatch(setStatusAC(status));
 }
-export const saveProfile = (formData) => async (dispatch) => {
+export const saveProfile = (formData) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
     let result = await profileAPI.saveProfile(formData);      
         if(result.data.resultCode === 0) 
-        dispatch(setProfileData(formData));
+        dispatch(setProfile(userId));
 }
 export const setProfileData =(formData)=>({ type: SAVE_USER_PROFILE, formData});
 
