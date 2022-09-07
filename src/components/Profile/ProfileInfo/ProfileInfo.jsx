@@ -10,9 +10,12 @@ const ProfileInfo = (props)=>{
   if(!props.profile){
     return <Preloader></Preloader>
   }
-  let onSubmit = async (formData)=>{
-    await props.saveProfile({...formData, fullName: props.profile.fullName});
-    setEditMode(false);
+  let onSubmit = (formData)=>{
+    props.saveProfile({...formData, fullName: props.profile.fullName}).then((result)=>{
+      if(!result)
+      setEditMode(false);
+    });
+    
   }
     return(
         <div>

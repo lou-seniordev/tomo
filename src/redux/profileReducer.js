@@ -92,6 +92,7 @@ export const saveProfile = (formData) => async (dispatch, getState) => {
         }else{
             let message = result.data.messages[0]; //result.data.messages > 0 ? result.data.messages[0] : ""
             dispatch(stopSubmit("profileEdit",{_error:message}));
+            return message;
         }
 }
 export const setProfileData =(formData)=>({ type: SAVE_USER_PROFILE, formData});
