@@ -13,10 +13,11 @@ const FormControl = ({input, meta : {touched, error}, children}) =>{
 }
 
 export const Textarea = (props) =>{
-    const {input, meta, ...restProps} = props;
-    return(<FormControl {...props}><textarea {...input} {...restProps}/></FormControl>)
+    debugger;
+    const {input, meta, value, ...restProps} = props;
+    return(<FormControl  {...props}><textarea {...input}   {...restProps}/></FormControl>)
 }
-
+//value={props.value}
 export const Input = (props) =>{
     const {input, meta, ...restProps} = props;
     return(<FormControl {...props}><input {...input} {...restProps}/></FormControl>)
