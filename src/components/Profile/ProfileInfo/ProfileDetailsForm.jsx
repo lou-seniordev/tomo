@@ -3,10 +3,11 @@ import { createField, Input, Textarea } from '../../common/FormControls/FormCont
 import Contacts from './Contacts';
 import style from './ProfileInfo.module.css';
 import { Field } from "redux-form";
-const ProfileDetailsForm = ({handleSubmit, contacts, initialValues})=>{
+const ProfileDetailsForm = ({handleSubmit, contacts, initialValues, error})=>{
     return(
         <form onSubmit={handleSubmit}>
           <div><button>Save</button></div>
+          {error && <div className={style.formSummaryError}>{error}</div>}
           <div>About me : </div>       
           {createField("I like pizza!","aboutMe", [], Textarea, {value: initialValues.aboutMe})}         
           <div>Looking for a job</div>
@@ -15,9 +16,9 @@ const ProfileDetailsForm = ({handleSubmit, contacts, initialValues})=>{
           {createField("My professional skills","lookingForAJobDescription", [], Textarea)}
           {Object.keys(contacts).map(key => {
                     if(true)
-                    return <div>
-                      <Contacts key={key} contactTitle={key} ContactValue={contacts[key]}/>
-                      {createField(key+"/profile.com",key,[], Input)}
+                    return <div key={key}>
+                      <b>{key}</b>: 
+                      {createField(key,"contacts."+key,[], Input)}
                     </div>
                   }                     
                   )}

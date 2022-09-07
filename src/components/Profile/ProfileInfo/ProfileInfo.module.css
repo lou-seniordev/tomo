@@ -1,4 +1,6 @@
-
+.formSummaryError{
+  color: red;
+}
 .profileBackground{
   height: 200px;
   width: 970px;

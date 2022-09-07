@@ -5,7 +5,7 @@ import PostBox from './PostForm';
 
 const MyPosts = React.memo(props=>{
   
-    let postElements = [...props.posts].reverse().map(p=><Post text={p.post} likesCount={p.likesCount}/>);
+    let postElements = [...props.posts].reverse().map(p=><Post key={p.id} text={p.post} likesCount={p.likesCount}/>);
   let addPost = (value) =>{
     props.addPost(value.postText);
   }  
