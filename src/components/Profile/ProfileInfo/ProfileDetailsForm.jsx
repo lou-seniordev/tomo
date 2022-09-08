@@ -15,8 +15,6 @@ const ProfileDetailsForm = ({handleSubmit, contacts, error})=>{
           <div>Description</div>
           {createField("My professional skills","lookingForAJobDescription", [], Textarea)}
           {Object.keys(contacts).map(key => {
-                    if(key)
-                    debugger
                     return <div key={key}>
                       <b>{key}</b>: 
                       {createField(key,"contacts."+key,[], Input)}
