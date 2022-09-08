@@ -7,7 +7,7 @@ import style from "../common/FormControls/FormControls.module.css";
 
 const maxLength30 = maxLength(30);
 
-const LoginForm = ({handleSubmit, error})=>{
+const LoginForm = ({handleSubmit, error, captcha})=>{
     
     return(<div>
         <form onSubmit={handleSubmit}>
@@ -16,6 +16,8 @@ const LoginForm = ({handleSubmit, error})=>{
             {createField("Password","password", [requiredField, maxLength30], Input, {type: "password"})}
             {createField(null,"rememberMe", null, Input, {type: "checkBox"}, "Remember me")}
             {error && <div className={style.formSummaryError}>{error}</div>}
+            {captcha && <img src={captcha}/>}
+            {captcha && createField("Symbols from picture","captcha", [requiredField], Input)}
             <div>
                 <button>Login</button>
             </div>
@@ -24,13 +26,14 @@ const LoginForm = ({handleSubmit, error})=>{
 }
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 const Login = (props)=>{
-    const onSubmit=(formData)=>{      
+    const onSubmit=(formData)=>{ 
+        console.log(formData)     ;
         props.login(formData);
     }
     if(props.isAuth) return <Navigate to={"/profile"}/>
 
     return(<div>
-        <LoginReduxForm onSubmit={onSubmit}/>
+        <LoginReduxForm onSubmit={onSubmit} captcha={props.captcha}/>
     </div>);
 }
 
