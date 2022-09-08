@@ -27,7 +27,6 @@ const LoginForm = ({handleSubmit, error, captcha})=>{
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 const Login = (props)=>{
     const onSubmit=(formData)=>{ 
-        console.log(formData)     ;
         props.login(formData);
     }
     if(props.isAuth) return <Navigate to={"/profile"}/>

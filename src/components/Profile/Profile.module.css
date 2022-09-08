@@ -1,4 +1,5 @@
 .profile{
   height: 87.5vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }

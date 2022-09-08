@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import style from './ProfileInfo.module.css';
 const ProfileDetailsForm = ({handleSubmit, contacts, error})=>{
     return(
-      <div>
+      <div className={style.profileDetails}>
         <form onSubmit={handleSubmit}>
           <div><button>Save</button></div>
           {error && <div className={style.formSummaryError}>{error}</div>}
@@ -15,7 +15,8 @@ const ProfileDetailsForm = ({handleSubmit, contacts, error})=>{
           <div>Description</div>
           {createField("My professional skills","lookingForAJobDescription", [], Textarea)}
           {Object.keys(contacts).map(key => {
-                    if(true)
+                    if(key)
+                    debugger
                     return <div key={key}>
                       <b>{key}</b>: 
                       {createField(key,"contacts."+key,[], Input)}
