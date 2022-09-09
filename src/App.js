@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes } from 'react-router-dom';
+import {Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Music from './components/Music/Music';
@@ -19,9 +19,18 @@ const DialogsContainer = React.lazy(()=>import('./components/Dialogs/DialogsCont
 const ProfileContainer = React.lazy(()=>import('./components/Profile/ProfileContainer'));
 const LoginContainer = React.lazy(()=>import('./components/Login/LoginContainer'));
 class App extends React.Component {
+  catchAllUnhandedErrors = (reason, promise) =>{
+      alert("Some error occurred");
+      //console.log(promise);
+      // dispatch to app-reducer and make global error to make popup
+  }
   componentDidMount(){
     this.props.initializeApp();
-    
+    window.addEventListener("unhandledrejection", this.catchAllUnhandedErrors);
+  }
+  componentWillUnmount()
+  {
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandedErrors);
   }
   render(){ 
     if(!this.props.initialized)
@@ -37,6 +46,7 @@ class App extends React.Component {
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/users' element={<UsersContainer/>}/>
                     <Route path='/settings' element={<SettingsContainer/>}/>
+                    
                   </Routes>
                   <React.Suspense fallback={<Preloader />}>
                   <Routes>  
@@ -44,6 +54,7 @@ class App extends React.Component {
                       <Route path='/dialogs' element={<DialogsContainer />}/>     
                       <Route path='/profile/:userId/' element={<ProfileContainer />}/> 
                       <Route path='/login' element={<LoginContainer/>}/>
+                      <Route path='/' element={<Navigate to="/profile"/>}/>
                   </Routes>
                   </React.Suspense>
                   
