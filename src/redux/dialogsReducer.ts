@@ -1,4 +1,4 @@
-const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
+const ADD_NEW_MESSAGE:string = "ADD-NEW-MESSAGE";
 
 let initialState = {
     dialogs: [
@@ -14,8 +14,11 @@ let initialState = {
         {id:4,  message: "Same!"}
     ]
 }
-
-const dialogsReducer = (state = initialState, action) =>{
+let GetMessageActionType = {
+    type: typeof ADD_NEW_MESSAGE,
+    newMessage: ""
+}
+const dialogsReducer = (state = initialState, action: typeof GetMessageActionType) =>{
 
     switch(action.type){
         case ADD_NEW_MESSAGE:
@@ -31,6 +34,6 @@ const dialogsReducer = (state = initialState, action) =>{
         default: return state;
     }
 }
-export const addMessageActionCreator =(newMessage)=>({ type: ADD_NEW_MESSAGE, newMessage });
+export const addMessageActionCreator =(newMessage: string)=>({ type: ADD_NEW_MESSAGE, newMessage });
 
 export default dialogsReducer;

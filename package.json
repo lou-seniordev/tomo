@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",
+    "@types/redux-form": "^8.3.5",
     "gh-pages": "^4.0.0",
     "react-test-renderer": "^18.2.0"
   }
