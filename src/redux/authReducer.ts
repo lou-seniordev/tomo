@@ -12,11 +12,11 @@ let initialState = {
    isAuth: false,
    captcha: null as string | null
 };
-let GetAuthActionType = {
+type setUserDataType = {
     type: typeof SET_USER_DATA,
     payload: {}
 }
-const authReducer = (state = initialState, action: typeof GetAuthActionType) =>{
+const authReducer = (state = initialState, action:setUserDataType):typeof initialState =>{
     switch(action.type){
         case SET_USER_DATA:
         case SET_CAPTCHA:{
@@ -29,7 +29,13 @@ const authReducer = (state = initialState, action: typeof GetAuthActionType) =>{
     }    
     
 }
-export const setUserData =(payload:any)=>({ type: SET_USER_DATA, payload});
+type payloadType = {
+    userId: number | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean
+}
+export const setUserData =(payload:payloadType):setUserDataType=>({ type: SET_USER_DATA, payload});
 export const getAuthUser = () => async (dispatch:any) => {
     let result = await authAPI.authMe();
     if(result.data.resultCode === 0){
@@ -37,13 +43,13 @@ export const getAuthUser = () => async (dispatch:any) => {
     }
 
 } 
-let FormDataType = {
-    login: "",
-    password: "",
-    rememberMe: false,
-    captcha: null as any
+type FormDataType = {
+    login: string,
+    password: string,
+    rememberMe: boolean,
+    captcha: any
 }
-export const login = (formData: typeof FormDataType) => async(dispatch:any) => 
+export const login = (formData:FormDataType) => async(dispatch:any) => 
 {
     let result = await authAPI.login(formData.login,formData.password,formData.rememberMe, formData.captcha);
     if(result.data.resultCode === 0){       
@@ -68,7 +74,7 @@ export const logout = () => async(dispatch:any) => {
 let result = await authAPI.logout();
     if(result.data.resultCode === 0){        
         dispatch(setUserData({
-            id:null,
+            userId: null,
             email: null,
             login: null,
             isAuth: false
@@ -76,3 +82,4 @@ let result = await authAPI.logout();
     }
 }
 export default authReducer;
+// bug with log out
