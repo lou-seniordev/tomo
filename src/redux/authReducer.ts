@@ -12,11 +12,12 @@ let initialState = {
    isAuth: false,
    captcha: null as string | null
 };
+export type initialStateType = typeof initialState;
 type setUserDataType = {
     type: typeof SET_USER_DATA,
     payload: {}
 }
-const authReducer = (state = initialState, action:setUserDataType):typeof initialState =>{
+const authReducer = (state = initialState, action:setUserDataType):initialStateType =>{
     switch(action.type){
         case SET_USER_DATA:
         case SET_CAPTCHA:{
@@ -68,7 +69,11 @@ export const getCaptcha = () => async (dispatch:any) => {
     let result = await securityAPI.getCaptchaUrl();
     dispatch(setCaptcha(result.data.url));
 } 
-export const setCaptcha =(captcha: string)=>({ type: SET_CAPTCHA, payload:{captcha}});
+type SettingCaptchaType = {
+    type: typeof SET_CAPTCHA,
+    payload: {captcha:string}
+}
+export const setCaptcha =(captcha: string):SettingCaptchaType=>({ type: SET_CAPTCHA, payload:{captcha}});
 
 export const logout = () => async(dispatch:any) => {
 let result = await authAPI.logout();

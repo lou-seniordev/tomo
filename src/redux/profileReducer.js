@@ -7,6 +7,9 @@ const SET_STATUS = "SET_STATUS";
 const DELETE_POST = "DELETE_POST";
 const SAVE_USER_PHOTO = "SAVE_USER_PHOTO";
 const SAVE_USER_PROFILE = "SAVE_USER_PROFILE";
+
+
+
 let initialState = {
     posts: [
         {id: 1, post: "Wassup!", likesCount:2}, 
