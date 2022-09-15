@@ -1,5 +1,6 @@
 
 import { authAPI, securityAPI } from "../api/api";
+import { setProfile } from "./profileReducer";
 const stopSubmit = require("redux-form");
 const SET_USER_DATA:string = "auth/SET_USER_DATA";
 const SET_CAPTCHA:string = "auth/SET_CAPTCHA";
@@ -31,7 +32,7 @@ const authReducer = (state = initialState, action:setUserDataType):initialStateT
     
 }
 type payloadType = {
-    userId: number | null,
+    id: number | null,
     email: string | null,
     login: string | null,
     isAuth: boolean
@@ -77,9 +78,9 @@ export const setCaptcha =(captcha: string):SettingCaptchaType=>({ type: SET_CAPT
 
 export const logout = () => async(dispatch:any) => {
 let result = await authAPI.logout();
-    if(result.data.resultCode === 0){        
+    if(result.data.resultCode === 0){                
         dispatch(setUserData({
-            userId: null,
+            id: null,
             email: null,
             login: null,
             isAuth: false

@@ -15,6 +15,7 @@ class HeaderContainer extends React.Component
             isAuth: false,
             login: ""
         });
+        
         // redirect to /users
     }
     render(){

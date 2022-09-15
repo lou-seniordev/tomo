@@ -5,7 +5,6 @@ import { setProfile, setStatus, updateStatus, saveProfile } from '../../redux/pr
 import { Navigate, useParams } from 'react-router-dom';
 import {compose} from "redux";
 
-let anonym = false;
 export function withRouter(Children){
   return(props)=>{
 
@@ -15,19 +14,23 @@ export function withRouter(Children){
 }
 
 class ProfileContainer extends React.Component{
-  refreshProfile(){     
+  
+  refreshProfile(){   
+     
     let userId = this.props.match.params.userId;
     if(!userId)
     {
       userId = this.props.authorizedUserId;
-      if(!userId){
-        anonym = true;
-        //this.props.history.push("/login");
-        // Redirect to login
-      }      
+      // if(!userId)   
+      // return <Navigate to={"/login"}/>;
     }
+
+    if(userId)
+    {
     this.props.setProfile(userId);
-    this.props.setStatus(userId); 
+    this.props.setStatus(userId);  
+    }
+      
   }
   componentDidMount(){
     this.refreshProfile();
@@ -37,9 +40,10 @@ class ProfileContainer extends React.Component{
     this.refreshProfile();
   }
     render(){
-        if(anonym) return <Navigate to={"/login"}/>;
+        if(!this.props.authorizedUserId && !this.props.match.params.userId) 
+            return <Navigate to={"/login"}/>;
         return<div>        
-          <Profile {...this.props} profile={this.props.profile}
+          <Profile {...this.props} profile={this.props.profile} 
           updateStatus={this.props.updateStatus} status={this.props.status} isOwner={!this.props.match.params.userId}
           saveProfile={this.props.saveProfile}>
           </Profile>
