@@ -13,18 +13,18 @@ let initialState = {
    isAuth: false,
    captcha: null as string | null
 };
-export type initialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 type setUserDataType = {
     type: typeof SET_USER_DATA,
     payload: {}
 }
-const authReducer = (state = initialState, action:setUserDataType):initialStateType =>{
+const authReducer = (state = initialState, action:setUserDataType):InitialStateType =>{
     switch(action.type){
         case SET_USER_DATA:
         case SET_CAPTCHA:{
             return{
                 ...state,
-                ...action.payload                
+                ...action.payload            
             }
         }       
         default: return state;

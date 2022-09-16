@@ -14,16 +14,41 @@ type PostsType = {
     post: string,
     likesCount: number
 }
+type ContactsType = {
+    github: string | null,
+        vk: string | null,
+        facebook: string | null,
+        instagram: string | null,
+        twitter: string | null,
+        website: string | null,
+        youtube: string | null,
+        mainLink: string | null
+}
+type PhotosType = {
+    small: string | null,
+    large: string | null,
+}
+type ProfileType = {
+    userId: number,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ContactsType,
+    photos: PhotosType
+}
+
 let initialState = {
     posts: [
         {id: 1, post: "Wassup!", likesCount:2}, 
         {id: 2, post:"React in progress", likesCount:17} 
     ] as Array<PostsType>,
-    profile: null as any, // set profile type 
-    status: "" as string 
+    profile: null as ProfileType | null,
+    status: "",
+    newPostText: ""
 }
+export type InitialStateType = typeof initialState;
 
-const profileReducer = (state = initialState, action : any) =>{
+const profileReducer = (state = initialState, action : any):InitialStateType =>{
     switch(action.type){
         case ADD_POST:{
             return {
@@ -56,9 +81,10 @@ const profileReducer = (state = initialState, action : any) =>{
                 }
             }
         case SAVE_USER_PHOTO:{
+            
             return{
                 ...state,
-                ...action.photo               
+                profile: {...state.profile, photos: action.photos} as ProfileType             
             }
         } 
         case SAVE_USER_PROFILE:{
@@ -85,17 +111,17 @@ type setStatusACType = {
 }
 type setUserProfileType = {
     type: typeof SET_USER_PROFILE,
-    profile: any
+    profile: ProfileType
 }
 type setPhotoType = {
     type: typeof SAVE_USER_PHOTO,
-    photo: string
+    photos: PhotosType
 }
 export const addPostActionCreator =(postText:string):addPostActionCreatorType=>({ type: ADD_POST, postText });
 
 export const deletePost =(postId:number):deletePostType=>({ type: DELETE_POST, postId });
 export const setStatusAC =(status:string):setStatusACType=>({ type: SET_STATUS, status });
-export const setUserProfile =(profile:any):setUserProfileType=>({ type: SET_USER_PROFILE, profile });
+export const setUserProfile =(profile:ProfileType):setUserProfileType=>({ type: SET_USER_PROFILE, profile });
 
 
 export const setProfile = (userId:number) => async(dispatch:any) => {    
@@ -125,11 +151,11 @@ export const saveProfile = (formData:any) => async (dispatch:any, getState:any) 
 }
 export const setProfileData =(formData:any)=>({ type: SAVE_USER_PROFILE, formData});
 
-export const setPhoto =(photo:string):setPhotoType=>({ type: SAVE_USER_PHOTO, photo});
-export const savePhoto = (photo:string) => async (dispatch:any) => {
+export const setPhoto =(photos:PhotosType):setPhotoType=>({ type: SAVE_USER_PHOTO, photos});
+export const savePhoto = (photo:File) => async (dispatch:any) => {
     let result = await profileAPI.savePhoto(photo);
     if(result.data.resultCode === 0){
-        dispatch(setPhoto(photo));       
+        dispatch(setPhoto(result.data.data.photos));       
     }
     
 
