@@ -4,16 +4,27 @@ import {connect} from 'react-redux';
 import { setProfile, setStatus, updateStatus, saveProfile } from '../../redux/profileReducer';
 import { Navigate, useParams } from 'react-router-dom';
 import {compose} from "redux";
+import { ProfileType } from '../../types/types';
 
-export function withRouter(Children){
-  return(props)=>{
+type Props = {
+  match: any,
+  authorizedUserId: number,
+  setProfile: (userId: number)=>void,
+  setStatus: (userId: number)=>void,
+  profile: ProfileType,
+  updateStatus: (status:string)=>void,
+  saveProfile: (formData: any)=>void,
+  status: string
+}
 
+export function withRouter(Children:any){
+  return(props:any)=>{
      const match  = {params: useParams()};
      return <Children history={props.history} {...props}  match = {match}/>
  }
 }
 
-class ProfileContainer extends React.Component{
+class ProfileContainer extends React.Component<Props>{
   
   refreshProfile(){   
      
@@ -35,7 +46,7 @@ class ProfileContainer extends React.Component{
   componentDidMount(){
     this.refreshProfile();
   }
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps:Props){
     if(this.props.match.params.userId !== prevProps.match.params.userId)
     this.refreshProfile();
   }
@@ -52,7 +63,7 @@ class ProfileContainer extends React.Component{
 
 
 
-let mapStateToProps = (state)=>({
+let mapStateToProps = (state: any)=>({
  profile: state.profilePage.profile,
  status: state.profilePage.status,
  authorizedUserId: state.auth.id,

@@ -1,8 +1,19 @@
 import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
+import { ProfileType } from '../../types/types';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import style from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-const Profile = ({profile, status, updateStatus,isOwner, saveProfile})=>{
+
+type Props = {
+  profile: ProfileType, 
+  status: string, 
+  isOwner: boolean, 
+  updateStatus: (status:string)=>void,
+  saveProfile: (formData: any)=>void,
+  children?: any
+}
+
+const Profile: React.FC<Props> = ({profile, status, updateStatus, isOwner, saveProfile})=>{
     return(
         <div className={style.profile}>
           <ProfileInfo profile={profile} 

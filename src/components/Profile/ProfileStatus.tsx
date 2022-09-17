@@ -1,6 +1,11 @@
 import React from "react";
 
-class ProfileStatus extends React.Component{
+type Props = {
+    status:string,
+    updateStatus: (status:string)=>void
+}
+
+class ProfileStatus extends React.Component<Props>{
     
     state = {
         editMode: false,
@@ -18,12 +23,12 @@ class ProfileStatus extends React.Component{
         });
         this.props.updateStatus(this.state.status);
     }
-    onStatusChange=(e)=>{
+    onStatusChange=(e:any)=>{
         this.setState({
             status: e.currentTarget.value
         });
     }
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps:Props){
         if(prevProps.status !== this.props.status){
             this.setState({
                 status: this.props.status
