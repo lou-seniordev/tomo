@@ -88,4 +88,3 @@ let result = await authAPI.logout();
     }
 }
 export default authReducer;
-// bug with log out

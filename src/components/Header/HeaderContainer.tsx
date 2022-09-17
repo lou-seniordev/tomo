@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Header from './Header';
 import {getAuthUser, logout} from '../../redux/authReducer';
 
-class HeaderContainer extends React.Component
+class HeaderContainer extends React.Component<{getAuthUser:any,logout:any}>
 {
     componentDidMount(){
         this.props.getAuthUser();      
@@ -23,7 +23,7 @@ class HeaderContainer extends React.Component
     }
 }
 
-const mapStateToProps = (state) =>({
+const mapStateToProps = (state:any) =>({
     
     isAuth: state.auth.isAuth,
     login: state.auth.login

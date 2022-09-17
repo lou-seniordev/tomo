@@ -1,8 +1,9 @@
 import style from './Header.module.css';
 import img from './../../assets/Tomo-logos/Tomo-2.png';
 import { NavLink } from 'react-router-dom';
+import PropTypes, {InferProps} from 'prop-types';
 
-const Header = ({login, logout, isAuth})=>{   
+const Header:any = ({login, logout, isAuth}:InferProps<typeof Header.propTypes>)=>{   
     return(    
         <header className={style.header}>
         <img alt='' src={img}/>
@@ -12,5 +13,10 @@ const Header = ({login, logout, isAuth})=>{
         </div>
         </header>
     );
+}
+Header.propTypes = {
+    login: PropTypes.any,
+    logout: PropTypes.any,
+    isAuth: PropTypes.bool
 }
 export default Header;

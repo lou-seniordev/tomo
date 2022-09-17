@@ -1,6 +1,8 @@
 
 import { usersAPI } from "../api/api";
+import { PhotosType, UserType } from "../types/types";
 import { objectSelectionChanges } from "../utils/helper";
+
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -10,20 +12,13 @@ const SET_TOTAL_USERS_COUNT="SET-TOTAL-USERS-COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_IN_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
-type UsersType = {
-
-}
-type FollowingInProgressType = {
-
-}
 let initialState = {
-    users:[],
+    users:[] as Array<UserType>,
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: [] as any
-
+    followingInProgress: [] as Array<number> // array of users id
 };
 type InitialStateType = typeof initialState;
 
@@ -76,7 +71,7 @@ type SetUsersType = {
     type: typeof SET_USERS
     users: any
 }
-export const setUsers =(users:any):SetUsersType=>({ type: SET_USERS, users });
+export const setUsers =(users:Array<UserType>):SetUsersType=>({ type: SET_USERS, users });
 type SetCurrentPageType = {
     type: typeof SET_CURRENT_PAGE,
     currentPage: number

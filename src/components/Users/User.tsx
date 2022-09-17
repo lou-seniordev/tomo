@@ -2,9 +2,16 @@ import React from "react";
 import style from "./Users.module.css"
 import noPic from "./../../assets/images/default.jpg"
 import { NavLink } from "react-router-dom";
+import { UserType } from "../../types/types";
 
+type Props = {
+    user: UserType, 
+    followingInProgress: Array<number>, 
+    unfollow: (userId: number)=>void, 
+    follow: (userId: number)=>void
+}
 
-let User = ({user, followingInProgress, unfollow, follow})=>{    
+let User: React.FC<Props> = ({user, followingInProgress, unfollow, follow})=>{    
 return(<div>
 <span>
     <NavLink to={'/profile/'+user.id}><div><img alt={user.name} src={user.photos.small != null ? user.photos.small: noPic} className={style.profPic}/></div></NavLink>
