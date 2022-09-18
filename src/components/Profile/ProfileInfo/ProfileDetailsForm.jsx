@@ -2,6 +2,14 @@ import { reduxForm } from 'redux-form';
 import { createField, Input, Textarea } from '../../common/FormControls/FormControls';
 import {connect} from 'react-redux';
 import style from './ProfileInfo.module.css';
+import { ContactsType } from '../../../types/types';
+
+// type PropsType = {
+//   handleSubmit: ()=>void, 
+//   contacts: ContactsType, 
+//   error: any
+// }
+// : React.FC<PropsType>
 const ProfileDetailsForm = ({handleSubmit, contacts, error})=>{
     return(
       <div className={style.profileDetails}>

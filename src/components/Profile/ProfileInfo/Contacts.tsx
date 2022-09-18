@@ -1,6 +1,12 @@
 import React from "react";
 import style from './ProfileInfo.module.css';
-const Contacts = ({contactTitle, ContactValue})=>
+
+type PropsType = {
+    contactTitle: string, 
+    ContactValue: string
+}
+
+const Contacts: React.FC<PropsType> = ({contactTitle, ContactValue})=>
 {
     return <div className={style.contact}><b>{contactTitle}</b>: {ContactValue}</div>
 }

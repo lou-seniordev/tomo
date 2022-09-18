@@ -1,8 +1,17 @@
 import { useState } from 'react';
+import { ContactsType, ProfileType } from '../../../types/types';
 import Preloader from '../../common/preloader/preloader';
 import Contacts from './Contacts';
 import style from './ProfileInfo.module.css';
-const ProfileDetailsForm = (props)=>{
+
+type PropsType = {
+  profile: ProfileType,
+  isOwner: boolean,
+  goToEditMode: ()=>void,
+
+}
+
+const ProfileDetailsForm: React.FC<PropsType> = (props)=>{
   let [isFullInfo, setFullInfo] = useState(false);
 
   if(!props.profile){
@@ -21,10 +30,9 @@ const ProfileDetailsForm = (props)=>{
               }}>{isFullInfo?"Less":"More"}</button>
               {isFullInfo && <div className={style.contacts}>
                 <div>Contacts</div>       
-                  {/* <div className={style.headerContact + " " + style.contact}><b>GitHub</b>: {props.profile.contacts.github}</div> */}
                   {Object.keys(props.profile.contacts).map(key => {
-                    if(props.profile.contacts[key])
-                    return <Contacts key={key} contactTitle={key} ContactValue={props.profile.contacts[key]}/>
+                    if(props.profile.contacts[key as keyof ContactsType])
+                    return <Contacts key={key} contactTitle={key} ContactValue={""+props.profile.contacts[key as keyof ContactsType]}/>
                   }                     
                   )}                  
               </div> } 
