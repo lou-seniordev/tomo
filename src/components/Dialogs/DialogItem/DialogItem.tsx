@@ -3,14 +3,15 @@ import style from './../Dialogs.module.css';
 
 type Props = {
     id: number,
-    ava: string,
+    ava: string | null,
     name: string
 }
 
 const DialogItem = (props: Props) =>{
+    
     return (
     <div className={style.item + ' ' /*+ style.active*/}>
-    <NavLink to={"/dialogs/"+props.id}><img src={props.ava} />{props.name}</NavLink>
+    <NavLink to={"/dialogs/"+props.id}><img src={props.ava || ""} />{props.name}</NavLink>
     </div>);
 }
 

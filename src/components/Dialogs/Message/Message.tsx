@@ -1,9 +1,7 @@
 import style from './../Dialogs.module.css';
 
 type Props = {
-    user: {
-        id:number,        
-    }
+    user: boolean,
     message : string
 }
 
