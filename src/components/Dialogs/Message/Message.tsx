@@ -1,6 +1,13 @@
 import style from './../Dialogs.module.css';
 
-const Messages = ({user, message}) =>{
+type Props = {
+    user: {
+        id:number,        
+    }
+    message : string
+}
+
+const Messages: React.FC<Props> = ({user, message}) =>{
     return(
         <div><div className={user ? style.userMessage : style.otherMessage}>{message}</div></div>
     );

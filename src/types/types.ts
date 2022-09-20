@@ -33,3 +33,6 @@ export type UserType = {
     status: string | null,
     followed: boolean
 }
+export type DialogFormType = {
+    messageText: string
+}

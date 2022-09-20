@@ -13,28 +13,28 @@ export const usersAPI = {
     return instance.get(`users?page=${currentPage}&count=${pageSize}`)
     .then(response => response.data);
     },
-    follow(userId){
+    follow(userId: number){
         return instance.post(`follow/${userId}`).then(response => response.data);
     },
-    unFollow(userId){
+    unFollow(userId: number){
         return instance.delete(`follow/${userId}`).then(response => response.data);
     },
-    setProfile(userId){
+    setProfile(userId: number){
         console.warn("Please use profileAPI instead.");
         profileAPI.setProfile(userId);
     }
 }
 export const profileAPI = {   
-    setProfile(userId){
+    setProfile(userId: number){
         return instance.get(`profile/${userId}`);
     },
-    getStatus(userId){
+    getStatus(userId: number){
         return instance.get(`profile/status/${userId}`);
     },
-    updateStatus(status){        
+    updateStatus(status: string){        
         return instance.put(`profile/status`, {status});
     },
-    savePhoto(photo){
+    savePhoto(photo: File){
         let formData = new FormData();
         formData.append("image",photo)
         return instance.put(`profile/photo`, formData, {
@@ -42,15 +42,22 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
         }})
     },
-    saveProfile(formData){        
+    saveProfile(formData: any){        
         return instance.put(`profile`,formData);
     }
 }
+
+type MeResponseType = {
+    data: { id: number, email: string, login: string },
+    resultCode: number,
+    messages: Array<string>
+}
+
 export const authAPI = {
     authMe(){
-        return instance.get(`auth/me`);
+        return instance.get<MeResponseType>(`auth/me`);
     },
-    login(email, password, rememberMe = false, captcha = null){
+    login(email: string, password: string, rememberMe = false, captcha: null|string = null){
         return instance.post(`auth/login`, {email, password, rememberMe, captcha});
     },
     logout(){
