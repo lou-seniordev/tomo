@@ -1,4 +1,47 @@
+import { PhotosType, ProfileType } from './../types/types';
 import axios from 'axios';
+import { UserType } from '../types/types';
+
+export enum ResultCode{
+    Success = 0,
+    Error = 1
+}
+export enum ResultCodeForCaptcha{
+    CaptchaRequired = 10
+}
+type BasicResponseType = {
+    data: { },
+    resultCode: ResultCode ,
+    messages: Array<string>
+}
+type FollowResponseType = BasicResponseType;
+type UnFollowResponseType = BasicResponseType;
+type LogoutResponseType = BasicResponseType;
+type UpdateStatusResponseType = BasicResponseType;
+type MeResponseType = {
+    data: { id: number, email: string, login: string },
+    resultCode: ResultCode,
+    messages: Array<string>
+}
+type LoginResponseType = {
+    data: { userId: number },
+    resultCode: ResultCode | ResultCodeForCaptcha,
+    messages: Array<string>
+}
+
+type GetCaptchaResponseType = {
+    url: string
+}
+type GetUsersResponseType = {
+    items: Array<UserType>,
+    totalCount: number,
+    error: string
+}
+type SavePhotoResponseType = {
+    data: PhotosType,
+    resultCode: ResultCode,
+    messages: Array<string>
+}
 
 const instance = axios.create({
     withCredentials: true,
@@ -10,14 +53,14 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage = 1,pageSize = 1){
-    return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+    return instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`)
     .then(response => response.data);
     },
     follow(userId: number){
-        return instance.post(`follow/${userId}`).then(response => response.data);
+        return instance.post<FollowResponseType>(`follow/${userId}`).then(response => response.data);
     },
     unFollow(userId: number){
-        return instance.delete(`follow/${userId}`).then(response => response.data);
+        return instance.delete<UnFollowResponseType>(`follow/${userId}`).then(response => response.data);
     },
     setProfile(userId: number){
         console.warn("Please use profileAPI instead.");
@@ -26,48 +69,45 @@ export const usersAPI = {
 }
 export const profileAPI = {   
     setProfile(userId: number){
-        return instance.get(`profile/${userId}`);
+        return instance.get<ProfileType>(`profile/${userId}`);
     },
     getStatus(userId: number){
-        return instance.get(`profile/status/${userId}`);
+        return instance.get<string>(`profile/status/${userId}`); // Response status:string
     },
     updateStatus(status: string){        
-        return instance.put(`profile/status`, {status});
+        return instance.put<BasicResponseType>(`profile/status`, {status});
     },
     savePhoto(photo: File){
         let formData = new FormData();
         formData.append("image",photo)
-        return instance.put(`profile/photo`, formData, {
+        return instance.put<SavePhotoResponseType>(`profile/photo`, formData, {
             headers:{
                 'Content-Type': 'multipart/form-data'
         }})
     },
     saveProfile(formData: any){        
-        return instance.put(`profile`,formData);
+        return instance.put<BasicResponseType>(`profile`,formData);
     }
 }
 
-type MeResponseType = {
-    data: { id: number, email: string, login: string },
-    resultCode: number,
-    messages: Array<string>
-}
+
+
 
 export const authAPI = {
     authMe(){
-        return instance.get<MeResponseType>(`auth/me`);
+        return instance.get<MeResponseType>(`auth/me`).then(result => result.data);
     },
     login(email: string, password: string, rememberMe = false, captcha: null|string = null){
-        return instance.post(`auth/login`, {email, password, rememberMe, captcha});
+        return instance.post<LoginResponseType>(`auth/login`, {email, password, rememberMe, captcha}).then(result=>result.data);
     },
     logout(){
-        return instance.delete(`auth/login`);
+        return instance.delete<LogoutResponseType>(`auth/login`).then(result => result.data);
     }
 
 }
 export const securityAPI = {
     getCaptchaUrl(){
-        return instance.get(`security/get-captcha-url`);
+        return instance.get<GetCaptchaResponseType>(`security/get-captcha-url`).then(result => result.data);
     }
 
 }
