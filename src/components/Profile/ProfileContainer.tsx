@@ -13,7 +13,7 @@ type Props = {
   setStatus: (userId: number)=>void,
   profile: ProfileType,
   updateStatus: (status:string)=>void,
-  saveProfile: (formData: any)=>void,
+  saveProfile: (formData: any)=>Promise<{}>,
   status: string
 }
 

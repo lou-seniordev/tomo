@@ -1,5 +1,10 @@
 import style from './Music.module.css';
-const Music = (props)=>{
+
+type Props = {
+
+}
+
+const Music: React.FC<Props> = (props)=>{
     return(<div>
         Music
     </div>);

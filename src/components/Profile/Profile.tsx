@@ -9,7 +9,7 @@ type Props = {
   status: string, 
   isOwner: boolean, 
   updateStatus: (status:string)=>void,
-  saveProfile: (formData: any)=>void,
+  saveProfile: (formData: any)=>Promise<{}>,
   children?: any
 }
 

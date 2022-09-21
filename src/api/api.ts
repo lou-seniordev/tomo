@@ -28,7 +28,6 @@ type LoginResponseType = {
     resultCode: ResultCode | ResultCodeForCaptcha,
     messages: Array<string>
 }
-
 type GetCaptchaResponseType = {
     url: string
 }
@@ -38,7 +37,7 @@ type GetUsersResponseType = {
     error: string
 }
 type SavePhotoResponseType = {
-    data: PhotosType,
+    data: {photos: PhotosType},
     resultCode: ResultCode,
     messages: Array<string>
 }
@@ -75,7 +74,7 @@ export const profileAPI = {
         return instance.get<string>(`profile/status/${userId}`); // Response status:string
     },
     updateStatus(status: string){        
-        return instance.put<BasicResponseType>(`profile/status`, {status});
+        return instance.put<UpdateStatusResponseType>(`profile/status`, {status});
     },
     savePhoto(photo: File){
         let formData = new FormData();
@@ -89,10 +88,6 @@ export const profileAPI = {
         return instance.put<BasicResponseType>(`profile`,formData);
     }
 }
-
-
-
-
 export const authAPI = {
     authMe(){
         return instance.get<MeResponseType>(`auth/me`).then(result => result.data);

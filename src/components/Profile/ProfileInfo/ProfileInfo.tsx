@@ -5,17 +5,33 @@ import ProfileStatusWithHooks from '../ProfileStatusWithHooks';
 import ProfileDetails from './ProfileDetails';
 import { useState } from 'react';
 import ProfileDetailsForm from './ProfileDetailsForm';
-const ProfileInfo = (props)=>{
+import { ContactsType, ProfileType } from '../../../types/types';
+
+type Props = {
+  profile: ProfileType,
+  saveProfile: (updatedProfile: ProfileType) => Promise<{}>,
+  status: string,
+  updateStatus: (status: string)=>void,
+  
+  isOwner: boolean,
+
+
+}
+
+const ProfileInfo : React.FC<Props> = (props)=>{
   const [editMode, setEditMode] = useState(false);
   if(!props.profile){
     return <Preloader></Preloader>
   }
-  let onSubmit = (formData)=>{
+  let onSubmit = (formData: any)=>{
     props.saveProfile({...formData, fullName: props.profile.fullName}).then((result)=>{
       if(!result)
       setEditMode(false);
     });
     
+  }
+  const propsToForm = {
+    contacts: props.profile.contacts
   }
     return(
         <div>
@@ -30,7 +46,7 @@ const ProfileInfo = (props)=>{
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} isOwner={props.isOwner}/>               
               </div>
               {editMode ?
-              <ProfileDetailsForm initialValues={props.profile} contacts={props.profile.contacts} onSubmit={onSubmit}/> :
+              <ProfileDetailsForm initialValues={props.profile} {...propsToForm} onSubmit={onSubmit}/> :
               <ProfileDetails goToEditMode={()=>{setEditMode(true)}}profile={props.profile} isOwner={props.isOwner}/>
               }
             </div>

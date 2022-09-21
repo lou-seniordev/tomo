@@ -1,6 +1,10 @@
 import style from './News.module.css';
 
-const News = (props)=>{
+type Props = {
+
+}
+
+const News: React.FC<Props> = (props)=>{
     return(<div className={style.content}>
         
     </div>);

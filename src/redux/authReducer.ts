@@ -20,7 +20,7 @@ type SetUserDataType = {
     type: typeof SET_USER_DATA,
     payload: {}
 }
-const authReducer = (state = initialState, action:SetUserDataType):InitialStateType =>{
+const authReducer = (state = initialState, action:ActionTypes):InitialStateType =>{
     switch(action.type){
         case SET_USER_DATA:
         case SET_CAPTCHA:{
