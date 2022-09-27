@@ -4,6 +4,6 @@ export const objectSelectionChanges = (items, itemId, objPropName, newObjProps) 
 
                 return{...u, ...newObjProps}
             }
-            return u;
-        })              
+        return u;
+    })              
 }

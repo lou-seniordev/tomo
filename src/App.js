@@ -20,7 +20,7 @@ const ProfileContainer = React.lazy(()=>import('./components/Profile/ProfileCont
 const LoginContainer = React.lazy(()=>import('./components/Login/LoginContainer'));
 class App extends React.Component {
   catchAllUnhandedErrors = (reason, promise) =>{
-      alert("Some error occurred");
+      console.log("Some error occurred");
       //console.log(promise);
       // dispatch to app-reducer and make global error to make popup
   }

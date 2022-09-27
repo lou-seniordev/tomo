@@ -10,7 +10,7 @@ import { setProfile } from '../../redux/profileReducer';
 
 
 class SettingsContainer extends React.Component{
-    componentWillMount(){
+    componentDidMount(){
         let userId = this.props.user.id;
         this.props.setProfile(userId);
     }
