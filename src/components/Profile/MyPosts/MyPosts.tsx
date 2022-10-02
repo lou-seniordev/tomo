@@ -17,7 +17,7 @@ const MyPosts: React.FC<Props> = React.memo(props=>{
   }  
     return(        
         <div className={style.postBlock}>
-          <div>
+          <div className={style.textareaBlock}>
             <PostBox addPost={addPost}/>
           </div>       
         <div >

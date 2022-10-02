@@ -1,13 +1,13 @@
 .app-wrapper{
-  margin: 0 auto;
-  width: 1200px; 
+  margin: 0 5% 0 5%;
+  width: 90%; 
   display: grid;
   height: 100vh;
   grid-template-areas: 
   "h h"
   "n c";
   grid-template-rows: 70px 1fr;
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 1fr 8fr;
    grid-gap: 5px; 
 }
 .app-wrapper-content{ 
@@ -16,4 +16,22 @@
   padding: 10px;
   background-color: rgb(249, 249, 249);
   border-radius: 10px;
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .app-wrapper{
+    width: 100%;
+    height: 80%;
+    grid-template-areas: 
+    "n h"
+    "c c";
+    grid-template-rows: 20px 1fr;
+    grid-template-columns: 2fr 10fr;
+    align-content: center;
+    grid-gap: 0;
+    margin: 0;
+  }
+  .app-wrapper-content{
+    padding: 0;
+  }
 }

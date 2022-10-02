@@ -24,10 +24,13 @@ const ProfileDetailsForm: React.FC<PropsType> = (props)=>{
                 <span>{props.profile.lookingForAJob ? <div>Looking for a job <div>
                   <span>Description:</span> {props.profile.lookingForAJobDescription}</div></div>: ""}</span>
               </div>
-              {props.isOwner && <button onClick={props.goToEditMode}>Edit</button>}  
+              <div className={style.buttonsDiv}>
+              
               <button onClick={()=>{
                 isFullInfo? setFullInfo(false):setFullInfo(true);
               }}>{isFullInfo?"Less":"More"}</button>
+              {props.isOwner && <button onClick={props.goToEditMode}>Edit</button>}  
+              </div>
               {isFullInfo && <div className={style.contacts}>
                 <div>Contacts</div>       
                   {Object.keys(props.profile.contacts).map(key => {

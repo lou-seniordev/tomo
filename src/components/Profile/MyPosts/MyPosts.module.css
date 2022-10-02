@@ -1,7 +1,15 @@
 .postContainer, .postButton{
 
-    display:inline-block;
-    vertical-align: top; 
+    /* display:inline-block;
+    vertical-align: top;  */
+}
+.postBlock{
+    display: flex;
+    flex-direction: column;
+}
+.postForm{
+    display: flex;
+    width: 100%;
 }
 .postButton button{
     margin: 10px;
@@ -25,4 +33,15 @@
     min-width: 40vh;
     max-width: 50vh;
     
+}
+@media only screen and (max-width: 768px) {
+    .postContainer textarea{
+        margin: 0;
+        width: 100%;
+        resize: none;
+        min-height: auto;
+        max-height: none;
+        min-width:  auto;
+        max-width:  none;
+    }
 }

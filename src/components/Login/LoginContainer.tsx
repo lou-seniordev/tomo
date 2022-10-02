@@ -4,14 +4,14 @@ import {connect} from 'react-redux';
 import {login} from "../../redux/authReducer";
 import { AppStateType } from "../../redux/reduxStore";
 
-type MapStatePropsType = {
+export type MapStatePropsTypeLogin = {
     isAuth:boolean,
     captcha: string | null
 }
-type MapDispatchPropsType = {
+export type MapDispatchPropsTypeLogin = {
     login: (formData: any) => void
 }
-type Props = MapStatePropsType & MapDispatchPropsType;
+type Props = MapStatePropsTypeLogin & MapDispatchPropsTypeLogin;
 
 class LoginContainer extends React.Component<Props>{
     componentDidUpdate(prevProps: Props){
@@ -24,10 +24,10 @@ class LoginContainer extends React.Component<Props>{
         return <Login {...this.props} captcha={this.props.captcha} login={this.props.login}/>
     }
 }
-let mapStateToProps = (state: AppStateType):MapStatePropsType=>({
+let mapStateToProps = (state: AppStateType):MapStatePropsTypeLogin=>({
     isAuth: state.auth.isAuth,
     captcha: state.auth.captcha
    });
 
-export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {login})(LoginContainer);
+export default connect<MapStatePropsTypeLogin, MapDispatchPropsTypeLogin, {}, AppStateType>(mapStateToProps, {login})(LoginContainer);
 

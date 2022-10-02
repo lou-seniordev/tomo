@@ -1,6 +1,7 @@
 .item{
   color: black;
   margin-top: 20px;
+  overflow-wrap: break-word;
 }
 .avatar{
   width: 60px;

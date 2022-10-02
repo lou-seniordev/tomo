@@ -7,7 +7,7 @@ const maxLengthValidator = maxLength(300);
 const PostForm = (props)=>{
     
     return(<>
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} className={style.postForm}>
             <div className={style.postContainer}><Field validate={ [maxLengthValidator] }  name={"postText"} component={Textarea} placeholder={"Post"} ></Field></div>
             <div className={style.postButton}><button>Post</button></div>
         </form>

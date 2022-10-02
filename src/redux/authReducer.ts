@@ -49,14 +49,14 @@ export const getAuthUser = ():ThunkType => async (dispatch) => {
 
 } 
 type FormDataType = {
-    login: string,
+    email: string,
     password: string,
     rememberMe: boolean,
     captcha: any
 }
 export const login = (formData:FormDataType):ThunkType => async(dispatch) => 
 {
-    let data = await authAPI.login(formData.login,formData.password,formData.rememberMe, formData.captcha);
+    let data = await authAPI.login(formData.email,formData.password,formData.rememberMe, formData.captcha);
     if(data.resultCode === ResultCode.Success){       
         dispatch(getAuthUser());
     }else {
