@@ -1,5 +1,5 @@
 import React from 'react';
-import { addPostActionCreator } from '../../../redux/profileReducer';
+import { actions } from '../../../redux/profileReducer';
 import MyPosts from './MyPosts';
 import {connect} from "react-redux";
 import { reset } from 'redux-form';
@@ -23,7 +23,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType=>{
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType=>{
   return{
       addPost: (postText:string)=>{
-        dispatch(addPostActionCreator(postText));
+        dispatch(actions.addPostActionCreator(postText));
         dispatch(reset('post'));
       }
   }

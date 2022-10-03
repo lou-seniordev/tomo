@@ -14,7 +14,7 @@ const ProfileDetailsForm = ({handleSubmit, contacts, error})=>{
     return(
       <div className={style.profileDetails}>
         <form onSubmit={handleSubmit}>
-          <div><button>Save</button></div>
+          
           {error && <div className={style.formSummaryError}>{error}</div>}
           <div>About me : </div>       
           {createField("I like pizza!","aboutMe", [], Textarea,{})}         
@@ -29,6 +29,7 @@ const ProfileDetailsForm = ({handleSubmit, contacts, error})=>{
                     </div>
                   }                     
                   )}
+          <div><button>Save</button></div>
       </form>
       </div>
     );

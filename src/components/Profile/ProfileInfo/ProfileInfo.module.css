@@ -35,9 +35,9 @@
   flex-direction: column;
   height: 35%;
 }
-.mainInfo, .jobInfo{
+/* .mainInfo, .jobInfo{
   
-}
+} */
 .mainInfo{
   position: relative;
   left: 20%;
@@ -46,10 +46,10 @@
 .mainInfo h2{
   margin: 0;
 }
-.jobInfo{
-  /* left: 60%; */
-  /* top: 56%; */
-}
+/* .jobInfo{
+  left: 60%; */
+  /* top: 56%;
+} */
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .profileBackground{
