@@ -26,41 +26,42 @@ class App extends React.Component {
   }
   componentDidMount(){
     this.props.initializeApp();
-    window.addEventListener("unhandledrejection", this.catchAllUnhandedErrors);
+    //window.addEventListener("unhandledrejection", this.catchAllUnhandedErrors);
   }
   componentWillUnmount()
   {
-    window.removeEventListener("unhandledrejection", this.catchAllUnhandedErrors);
+    //window.removeEventListener("unhandledrejection", this.catchAllUnhandedErrors);
   }
   render(){ 
     if(!this.props.initialized)
-    return <Preloader/>
-    return(
-            
-              <div className = 'app-wrapper'>
-                <HeaderContainer/>
-                <Navbar/>
-                <div className = 'app-wrapper-content'>               
-                  <Routes>                                                                              
-                    <Route path='/news' element={<News/>}/>
-                    <Route path='/music' element={<Music/>}/>
-                    <Route path='/users' element={<UsersContainer/>}/>
-                    <Route path='/settings' element={<SettingsContainer/>}/>
-                    
-                  </Routes>
-                  <React.Suspense fallback={<Preloader />}>
-                  <Routes>  
-                      <Route path='/profile' element={<ProfileContainer />}/>  
-                      <Route path='/dialogs' element={<DialogsContainer />}/>     
-                      <Route path='/profile/:userId/' element={<ProfileContainer />}/> 
-                      <Route path='/login' element={<LoginContainer/>}/>
-                      <Route path='/' element={<Navigate to="/profile"/>}/>
-                  </Routes>
-                  </React.Suspense>
-                  
-                </div>
+    {
+      return <Preloader/>
+    }
+    
+    return(         
+            <div className = 'app-wrapper'>
+              <HeaderContainer/>
+              <Navbar/>
+              <div className = 'app-wrapper-content'>               
+                <Routes>                                                                              
+                  <Route path='/news' element={<News/>}/>
+                  <Route path='/music' element={<Music/>}/>
+                  <Route path='/users' element={<UsersContainer/>}/>
+                  <Route path='/settings' element={<SettingsContainer/>}/>
+
+                </Routes>
+                <React.Suspense fallback={<Preloader />}>
+                <Routes>  
+                    <Route path='/profile' element={<ProfileContainer />}/>  
+                    <Route path='/dialogs' element={<DialogsContainer />}/>     
+                    <Route path='/profile/:userId/' element={<ProfileContainer />}/> 
+                    <Route path='/login' element={<LoginContainer/>}/>
+                    <Route path='/' element={<Navigate to="/profile"/>}/>
+                </Routes>
+                </React.Suspense>
+
               </div>
-            
+            </div>           
   );
   }
 }

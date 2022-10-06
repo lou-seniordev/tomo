@@ -1,24 +1,14 @@
-
 import { stopSubmit } from "redux-form";
 import { ThunkAction } from "redux-thunk";
-import { authAPI, profileAPI } from "../api/api";
-import { AppStateType } from "./reduxStore";
+import { authAPI } from "../api/authAPI";
+import { profileAPI } from "../api/profileAPI";
+import { AppStateType, BaseThunkType, InferActionsType } from "./reduxStore";
 
-const SAVE_USER_PHOTO = "SAVE_USER_PHOTO";
+let initialState = {};
 
-let initialState = {
-
-};
-type InitialStateType = typeof initialState;
-type SetPhotoType = {
-    type: typeof SAVE_USER_PHOTO,
-    photo: File
-}
-type ActionTypes = SetPhotoType;
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>;
 const settingsReducer = (state = initialState, action:ActionTypes):InitialStateType =>{
     switch(action.type){
-        case SAVE_USER_PHOTO:{
+        case 'SN/SETTINGS/SAVE_USER_PHOTO':{
             return{
                 ...state,
                 ...action.photo               
@@ -27,12 +17,21 @@ const settingsReducer = (state = initialState, action:ActionTypes):InitialStateT
         default: return state;
     }        
 }
-export const setPhoto =(photo:File):SetPhotoType=>({ type: SAVE_USER_PHOTO, photo});
+export const actions = {
+    setPhoto: (photo:File)=>({ type: 'SN/SETTINGS/SAVE_USER_PHOTO', photo} as const)
+}
+
 export const savePhoto = (photo:File):ThunkType => async (dispatch) => {
     let result = await profileAPI.savePhoto(photo);
     
-    if(result.data.resultCode === 0){
-        dispatch(setPhoto(photo));       
+    if(result.resultCode === 0){
+        dispatch(actions.setPhoto(photo));       
     }
 } 
+
+type InitialStateType = typeof initialState;
+type ActionTypes = InferActionsType< typeof actions>;
+type ThunkType = BaseThunkType<ActionTypes>;
+//type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>;
+
 export default settingsReducer;

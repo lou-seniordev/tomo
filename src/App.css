@@ -25,7 +25,7 @@
     grid-template-areas: 
     "n h"
     "c c";
-    grid-template-rows: 20px 1fr;
+    grid-template-rows: 35px 1fr;
     grid-template-columns: 2fr 10fr;
     align-content: center;
     grid-gap: 0;

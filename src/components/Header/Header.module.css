@@ -19,9 +19,17 @@
 .header img{
   height: 100%;
 }
+.userLogin{
+  font-weight: bold;
+}
+.userLoginBlock{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 .loginBlock{
   float: right;
-  margin: 22px 15px 22px 0;
+  margin: 16px 15px 22px 0;
 }
 .login{
   color: white;
@@ -30,4 +38,18 @@
   border:none;
   background-color: transparent;
   color: white;
+}
+@media only screen and (max-width: 768px) {
+  .loginBlock{
+    float: right;
+    margin: 2% 5% 0 0;
+  }
+  .userLoginBlock{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .login{
+    margin: 0 15% 0 0;
+  }
 }

@@ -1,33 +1,26 @@
-import { stopSubmit } from "redux-form";
 import { getAuthUser } from "./authReducer";
-import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
-import { AppStateType, InferActionsType } from "./reduxStore";
+import { AppStateType, BaseThunkType, InferActionsType } from "./reduxStore";
 
-export type initialStateType = typeof initialState;
+
 let initialState = {
    initialized: false
 };
 const appReducer = (state = initialState, action:ActionTypes):initialStateType =>{
     switch(action.type){
-        case 'SET_INITIALIZED':{
+        case 'APP/SET_INITIALIZED':{
             return{
                 ...state,
                 initialized: true           
             }
-        } 
-        
+        }         
         default: return state;
-    }    
-    
+    }       
 }
-type ActionTypes = InferActionsType<typeof actions>;
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>;
 
 export const actions = {
-   initializeSuccess:()=>({ type: 'SET_INITIALIZED'})
+   initializeSuccess:()=>({ type: 'APP/SET_INITIALIZED'})
 }
-
 
 export const initializeApp = ():ThunkType => async (dispatch) => {
     let promise = dispatch(getAuthUser());
@@ -35,5 +28,10 @@ export const initializeApp = ():ThunkType => async (dispatch) => {
     dispatch(actions.initializeSuccess());
     });
 }; 
+
+export type initialStateType = typeof initialState;
+type ActionTypes = InferActionsType<typeof actions>;
+type ThunkType = BaseThunkType<ActionTypes>;
+//type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>;
 
 export default appReducer;
