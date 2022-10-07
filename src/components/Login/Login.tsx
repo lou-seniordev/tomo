@@ -13,8 +13,9 @@ interface LoginFormOwnProps {
     children?: JSX.Element|JSX.Element[];
 }
 
-const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps>  = ({handleSubmit, error, captcha})=>{
-    
+const LoginForm: React.FC<
+    InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps>  
+    = ({handleSubmit, error, captcha})=>{   
     return(<div>
         <form onSubmit={handleSubmit}>
             <h1>Login</h1>
@@ -41,7 +42,7 @@ export type LoginFormValuesType = {
 type LoginFormValuesKeys = Extract<keyof LoginFormValuesType, string>;
 
 const Login: React.FC<MapStatePropsTypeLogin & MapDispatchPropsTypeLogin> = (props)=>{
-    const onSubmit=(formData: any)=>{ 
+    const onSubmit=(formData: LoginFormValuesType)=>{ 
         props.login(formData);
     }
     if(props.isAuth) return <Navigate to={"/profile"}/>

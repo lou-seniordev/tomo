@@ -8,17 +8,17 @@ type Props = {
   posts: Array<PostsType>,
   addPost: (postText: string)=>void
 }
-
+export type NewPostFormType = {
+  postText: string
+}
 const MyPosts: React.FC<Props> = React.memo(props=>{
   
     let postElements = [...props.posts].reverse().map(p=><Post key={p.id} text={p.post} likesCount={p.likesCount}/>);
-  let addPost = (value: any) =>{
-    props.addPost(value.postText);
-  }  
+  let addPost = (value: NewPostFormType) => props.addPost(value.postText); 
     return(        
         <div className={style.postBlock}>
           <div className={style.textareaBlock}>
-            <PostBox addPost={addPost}/>
+            <PostBox onSubmit={addPost}/>
           </div>       
         <div >
           {postElements}

@@ -10,7 +10,7 @@ import { AppStateType } from '../../redux/reduxStore';
 type MapStatePropsType = {
     dialogPage: AppStateType["dialogPage"]
 }
-type MapDispatchPropsType = {
+export type MapDispatchDialogPropsType = {
     messageSend: (newMessage: string) => void
 }
 
@@ -20,15 +20,15 @@ let mapStateToProps = (state: AppStateType):MapStatePropsType=>{
         dialogPage: state.dialogPage
     });
 }
-let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType=>{
+let mapDispatchToProps = (dispatch: Dispatch):MapDispatchDialogPropsType=>{
     return ({
         messageSend: (newMessage: string)=>{ 
-            dispatch(actions.addMessageActionCreator(newMessage)); 
+            dispatch(actions.addMessage(newMessage)); 
             dispatch(reset('dialog'));
         }
     });
 }
 export default compose(
-    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps,mapDispatchToProps),
+    connect<MapStatePropsType, MapDispatchDialogPropsType, {}, AppStateType>(mapStateToProps,mapDispatchToProps),
     withAuthRedirect
 )(Dialogs);

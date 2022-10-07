@@ -31,10 +31,10 @@ const dialogsReducer = (state = initialState, action:ActionTypes):InitialStateTy
     }
 }
 export const actions = {
-    addMessageActionCreator: (newMessage: string)=>({ type: 'SN/DIALOGS/ADD_NEW_MESSAGE', newMessage }),
+    addMessage: (newMessage: string)=>({ type: 'SN/DIALOGS/ADD_NEW_MESSAGE', newMessage }),
 }
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 type ActionTypes = InferActionsType<typeof actions>
 type DialogType ={
     id: number,

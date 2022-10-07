@@ -6,6 +6,7 @@ describe("ProfileStatus component", () => {
   test("status from props should be in the state", () => {
     const component = create(<ProfileStatus status ="test status"/>);
     const instance = component.getInstance();
+    if(instance != null)
     expect(instance.state.status).toBe("test status");
   });
   test("after creation span should be displayed", () => {
@@ -40,6 +41,7 @@ describe("ProfileStatus component", () => {
     let mockCallBeck = jest.fn();
     const component = create(<ProfileStatus status ="test status" updateStatus = {mockCallBeck}/>);
     const instance = component.getInstance();
+    if(instance != null)
     instance.deActivateEditMode();
     expect(mockCallBeck.mock.calls.length).toBe(1);
   });
