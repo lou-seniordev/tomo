@@ -11,6 +11,7 @@
     display: flex;
     width: 100%;
 }
+
 .postButton button{
     margin: 10px;
     border-radius: 10px;    
@@ -37,11 +38,14 @@
 @media only screen and (max-width: 768px) {
     .postContainer textarea{
         margin: 0;
-        width: 100%;
+        width: 35vh;
         resize: none;
         min-height: auto;
         max-height: none;
         min-width:  auto;
         max-width:  none;
+    }
+    .postForm{
+        justify-content: space-evenly;
     }
 }

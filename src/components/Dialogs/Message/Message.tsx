@@ -7,7 +7,7 @@ type Props = {
 
 const Messages: React.FC<Props> = ({user, message}) =>{
     return(
-        <div><div className={user ? style.userMessage : style.otherMessage}>{message}</div></div>
+        <div className={style.messageItem}><div className={user ? style.userMessage : style.otherMessage}>{message}</div></div>
     );
 }
 export default Messages;

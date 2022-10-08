@@ -1,9 +1,14 @@
 .chatForm{
-    width: 90vh;
-    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.chatInputContainer{
+    width: 70%;
 }
 .chatInputContainer,.chatInputButton{
-    display: inline-block;
+    /* display: inline-block; */
 }
 .chatInputContainer textarea, .chatInputButton button{       
     border-radius: 10px;
@@ -20,10 +25,15 @@
 } 
  .chatInputContainer textarea{
     box-shadow: 1px 1px 10px 1px lightblue;
-    width: 80vh;
+    width: 100%;
     resize: none;   
     min-height: 6vh; 
  }  
 .chatInputButton button:hover{
     cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+    /* .chatInputContainer textarea{
+        width: 80%;
+    } */
 }

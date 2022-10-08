@@ -1,7 +1,8 @@
 .dialogs{
-    height: 87.5vh;
+    height: 87.5vh;;
     display: grid;
     grid-template-columns: 3fr 9fr;;
+    
 }
 .dialogItems{
     height: 95%;
@@ -9,7 +10,9 @@
     border-right: 1px solid rgb(206, 206, 206);
 }
 .messageBody{
-    
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
 }
 .item{
     padding: 5px 10px 5px 10px;
@@ -24,9 +27,11 @@
 .messages{
     display: flex;
     flex-direction: column;
-    height: 75vh;    
-    padding: 10px;
+    height: 72vh;    
+    padding: 1%;
+    width: 98%;
     overflow-y: scroll;   
+    max-width: 220vh;
 }
 
 .dialogItems .active{
@@ -49,8 +54,8 @@ a{
     color: #000;
 }
 .chatInput{
-    margin: 15px 0 5px 5px;
-    position: absolute;
+    margin: 10px 0 5px 5px;
+
     bottom: 25px;
 }
 .userMessage{
@@ -60,12 +65,30 @@ a{
     float: left;
 }
 .otherMessage, .userMessage{
+    overflow-wrap: break-word;
+    max-width: 35%;
     display: block;
     padding: 5px 10px 5px 10px;
     border: 1px solid ghostwhite;
     border-radius: 5px;
     margin: 15px;
-    width: 25vh;
     background-color: ghostwhite;
     box-shadow: 1px 1px 5px  rgb(178, 184, 194);
 }
+.messageItem{
+    
+}
+@media only screen and (max-width: 768px) {
+    .dialogs{
+      height: 96vh;
+      overflow: hidden;
+    }
+    .messages{
+        height: 85vh;
+        /* width: 35vh; */
+    }
+    .otherMessage, .userMessage{
+        /* max-width: 35%; */
+    }
+}
+  

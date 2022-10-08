@@ -16,3 +16,9 @@
     height: 87.5vh;
     overflow-y: scroll;
 }
+@media only screen and (max-width: 768px) {
+    .users{
+        height: 96vh;
+    }
+
+}
